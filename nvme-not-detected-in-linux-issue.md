@@ -88,3 +88,15 @@ If the SSD is now listed, proceed to partition and format it.
    ```bash
    sudo dmesg | grep -i nvme
    ```
+
+
+
+#explanation:
+
+When your BIOS SATA operation is set to **RAID**, the system expects multiple drives to be combined into a RAID setup. In this mode, it often uses special RAID drivers to communicate with the storage devices, which may not fully support detecting standalone NVMe SSDs.
+
+When you change the mode to **AHCI**, the BIOS switches to a more universal way of managing storage devices. AHCI is designed to work with individual drives and fully supports NVMe SSDs. That’s why, after switching to AHCI, your NVMe SSD became visible to the BIOS.
+
+In short:
+- **RAID mode:** Looks for RAID setups, which can hide standalone drives like NVMe SSDs.
+- **AHCI mode:** Works better with single drives and fully supports NVMe SSDs.
